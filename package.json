@@ -1,0 +1,24 @@
+{
+  "name": "switchbot-status-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yu1k/switchbot-status-checker.git"
+  },
+  "author": "yu1k",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yu1k/switchbot-status-checker/issues"
+  },
+  "homepage": "https://github.com/yu1k/switchbot-status-checker#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.3"
+  }
+}

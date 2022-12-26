@@ -1,0 +1,12 @@
+version: '3'
+services:
+  switchbot_status_checker:
+    build: .
+    container_name: switchbot_status_checker
+    tty: true
+    #env_file:
+    #  - config.env
+    volumes:
+      - ./:/home/
+      - /home/node_modules/
+    restart: always
