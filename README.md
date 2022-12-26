@@ -65,6 +65,9 @@ LOWER_LIMIT_TEMPERATURE=''
 # Slack
 SLACK_WEBHOOK_URL=''
 SlackへWebhook経由で通知するので、Webhook URLをSlackから取得して設定します。
+
+SLACK_POST_CHANNEL=''
+Slackへ通知する際の通知するチャンネルを #hoge 形式で指定します。
 ```
 
 3. 以下のコマンドを実行してアプリケーションを実行します。

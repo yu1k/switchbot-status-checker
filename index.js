@@ -10,7 +10,7 @@ require("dotenv").config({ path: ENV_FILE_PATH });
  * 必要な環境変数をチェックする
  * 設定されていない場合は process.exit(1) する。
  */
- if (!(process.env.TARGET_ENDPOINT_URL || process.env.API_VERSION || process.env.SECRET_TOKEN || process.env.CLIENT_SECRET || process.env.API_ACCESS_INTERVAL_TIME || process.env.SLACK_WEBHOOK_URL)) {
+ if (!(process.env.TARGET_ENDPOINT_URL || process.env.API_VERSION || process.env.SECRET_TOKEN || process.env.CLIENT_SECRET || process.env.API_ACCESS_INTERVAL_TIME || process.env.SLACK_WEBHOOK_URL || process.env.SLACK_POST_CHANNEL)) {
     console.log(
         "###############################" + "\n" +
         "# Please set env parameter... #" + "\n" +
@@ -33,7 +33,7 @@ async function slackPost(message_text){
     try {
         let msg = String(message_text);
         const slackPost = await axios.post(process.env.SLACK_WEBHOOK_URL, {
-            'channel': '#bot-test',
+            'channel': process.env.SLACK_POST_CHANNEL,
             'username': 'SwitchBot 状態確認くん',
             'text': `${msg}`,
             'icon_emoji': ':email:'
