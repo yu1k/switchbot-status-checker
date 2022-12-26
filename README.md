@@ -98,6 +98,11 @@ $ docker-compose down --rmi local
 
 - [x] SwitchBotの温湿度計からSwitchBot API経由で温度を取得して決められた温度に従って監視する。事前に設定された上限・下限温度に達したらSlackへアラートを飛ばす
 
+## テストケース
+
+- [x] 設定した上限温度を上回った場合にSlackへPOSTできるか
+- [ ] 設定した下限温度を下回った場合にSlackへPOSTできるか
+
 ## SwitchBot API 参考資料
 
 [SwitchBot API v1.1 - OpenWonderLabs/SwitchBotAPI](https://github.com/OpenWonderLabs/SwitchBotAPI)
