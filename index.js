@@ -57,7 +57,7 @@ let tempLowerTemperature = null;
 async function main() {
     // ログ用
     let cDate = new Date();
-    console.log("Current time: " + cDate);
+    console.log("Current date: " + cDate);
 
     /**
      * Request Header: https://github.com/OpenWonderLabs/SwitchBotAPI#request-header
@@ -90,35 +90,35 @@ async function main() {
         console.log("response status code: " + response.status);
         console.log(response.data.body.temperature);
 
-        if (process.env.UPPER_LIMIT_TEMPERATURE < response.data.body.temperature && tempUpperTemperatureFlag != true) {
+        if (Number(process.env.UPPER_LIMIT_TEMPERATURE) <= response.data.body.temperature && tempUpperTemperatureFlag != true) {
             slackPost(`設定した上限温度を上回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempUpperTemperatureFlag = true;
 
             // 上限温度を上回った現在の温度を格納
-            tempUpperTemperature = response.data.body.temperature;
+            // tempUpperTemperature = response.data.body.temperature;
         }
-        if(response.data.body.temperature < tempUpperTemperature && tempUpperTemperatureFlag != false){
+        if(response.data.body.temperature < Number(process.env.UPPER_LIMIT_TEMPERATURE) && tempUpperTemperatureFlag != false){
             slackPost(`設定した上限温度を下回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempUpperTemperatureFlag = false;
 
             // 変数を初期化
-            tempUpperTemperature = null;
+            // tempUpperTemperature = null;
         }
 
 
-        if(response.data.body.temperature <= process.env.LOWER_LIMIT_TEMPERATURE && tempLowerTemperatureFlag != true){
+        if(response.data.body.temperature < Number(process.env.LOWER_LIMIT_TEMPERATURE) && tempLowerTemperatureFlag != true){
             slackPost(`設定した下限温度を下回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempLowerTemperatureFlag = true;
 
             // 下限温度を下回った現在の室温を格納
-            tempLowerTemperature = response.data.body.temperature;
+            // tempLowerTemperature = response.data.body.temperature;
         }
-        if(tempLowerTemperature <= response.data.body.temperature && tempLowerTemperatureFlag != false){
+        if(Number(process.env.LOWER_LIMIT_TEMPERATURE) < response.data.body.temperature && tempLowerTemperatureFlag != false){
             slackPost(`設定した下限温度を上回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempLowerTemperatureFlag = false;
 
             // 変数を初期化
-            tempLowerTemperature = null;
+            // tempLowerTemperature = null;
         }
     } catch (err) {
         console.log("error response status: " + err);
