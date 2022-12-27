@@ -106,14 +106,14 @@ async function main() {
         }
 
 
-        if(response.data.body.temperature <= process.env.LOWER_LIMIT_TEMPERATURE && tempUpperTemperatureFlag != true){
+        if(response.data.body.temperature <= process.env.LOWER_LIMIT_TEMPERATURE && tempLowerTemperatureFlag != true){
             slackPost(`設定した下限温度を下回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempLowerTemperatureFlag = true;
 
             // 下限温度を下回った現在の室温を格納
             tempLowerTemperature = response.data.body.temperature;
         }
-        if(tempLowerTemperature <= response.data.body.temperature && tempUpperTemperatureFlag != false){
+        if(tempLowerTemperature <= response.data.body.temperature && tempLowerTemperatureFlag != false){
             slackPost(`設定した下限温度を上回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempLowerTemperatureFlag = false;
 
