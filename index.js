@@ -106,7 +106,7 @@ async function main() {
         }
 
 
-        if(response.data.body.temperature < Number(process.env.LOWER_LIMIT_TEMPERATURE) && tempLowerTemperatureFlag != true){
+        if(response.data.body.temperature <= Number(process.env.LOWER_LIMIT_TEMPERATURE) && tempLowerTemperatureFlag != true){
             slackPost(`設定した下限温度を下回りました。\n現在の室温: ${String(response.data.body.temperature)} 度`);
             tempLowerTemperatureFlag = true;
 
