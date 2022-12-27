@@ -6,7 +6,7 @@ SwitchBot 状態確認くん です。
 
 SwitchBot API経由で室温等の部屋の情報を取得するツールです。
 
-事前に設定された条件に従って監視・Slackへのアラートも行います。
+事前に設定された条件に従って監視を行います。異常があればSlackへのアラートも行います。
 
 ## Requirement
 
@@ -22,7 +22,7 @@ SwitchBot API経由で室温等の部屋の情報を取得するツールです�
 
 ### Dockerコンテナ上の環境で動かしたい場合
 
-1. 以下のコマンドを実行してローカルにGitHubからcloneします。
+1. 以下のコマンドを実行してGitHubからローカルにcloneします。
 
 ```
 $ git clone https://github.com/yu1k/switchbot-status-checker.git switchbot-status-checker && cd $_
@@ -70,14 +70,14 @@ SLACK_POST_CHANNEL=''
 Slackへ通知する際の通知するチャンネルを #hoge 形式で指定します。
 ```
 
-3. 以下のコマンドを実行してアプリケーションを実行します。
+3. 以下のコマンドを実行してアプリケーションを起動します。
 
 ```
 $ docker-compose up -d --build
 docker-compose を利用してコンテナを起動させます。
 ```
 
-4. 停止や再起動したい場合は以下のコマンドを実行します。
+4. コンテナの停止やコンテナを再起動したい場合は以下のコマンドを実行します。
 
 ```
 $ docker-compose restart [container_name]
@@ -97,11 +97,12 @@ $ docker-compose down --rmi local
 ## 機能
 
 - [x] SwitchBotの温湿度計からSwitchBot API経由で温度を取得して決められた温度に従って監視する。事前に設定された上限・下限温度に達したらSlackへアラートを飛ばす
+- [ ] CIで自動テストする
 
 ## テストケース
 
 - [x] 設定した上限温度を上回った場合にSlackへPOSTできるか
-- [ ] 設定した下限温度を下回った場合にSlackへPOSTできるか
+- [x] 設定した下限温度を下回った場合にSlackへPOSTできるか
 
 ## SwitchBot API 参考資料
 
